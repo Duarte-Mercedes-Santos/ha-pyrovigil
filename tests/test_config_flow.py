@@ -41,8 +41,8 @@ def mock_setup_entry():
     """Prevent actual setup during config flow tests."""
     with patch(
         "custom_components.pyrovigil.async_setup_entry",
+        new_callable=AsyncMock,
         return_value=True,
-        create=True,
     ):
         yield
 
