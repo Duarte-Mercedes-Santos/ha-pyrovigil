@@ -29,7 +29,15 @@ VALID_USER_INPUT = {
 @pytest.fixture(autouse=True)
 def mock_api_connectivity():
     """Mock API connectivity check."""
-    with patch("custom_components.pyrovigil.config_flow.PyrovigilApiClient") as mock_cls:
+    with (
+        patch(
+            "custom_components.pyrovigil.config_flow.PyrovigilApiClient"
+        ) as mock_cls,
+        patch(
+            "custom_components.pyrovigil.config_flow.async_get_clientsession",
+            return_value=AsyncMock(),
+        ),
+    ):
         client = AsyncMock()
         client.async_get_nearby_fires.return_value = []
         mock_cls.return_value = client
