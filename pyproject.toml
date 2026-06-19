@@ -1,0 +1,20 @@
+[project]
+name = "ha-pyrovigil"
+version = "0.1.0"
+description = "Home Assistant integration for monitoring Portuguese wildfires"
+license = {text = "MIT"}
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["custom_components.pyrovigil"]

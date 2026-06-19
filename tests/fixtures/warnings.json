@@ -1,0 +1,26 @@
+[
+  {
+    "text": "Condições favoráveis à ocorrência de trovoada.",
+    "awarenessTypeName": "Trovoada",
+    "idAreaAviso": "LSB",
+    "startTime": "2026-06-17T14:00:00",
+    "endTime": "2026-06-17T21:00:00",
+    "awarenessLevelID": "orange"
+  },
+  {
+    "text": "Períodos de chuva por vezes forte.",
+    "awarenessTypeName": "Precipitação",
+    "idAreaAviso": "PRT",
+    "startTime": "2026-06-17T09:00:00",
+    "endTime": "2026-06-17T18:00:00",
+    "awarenessLevelID": "yellow"
+  },
+  {
+    "text": "Tempo quente com temperaturas elevadas.",
+    "awarenessTypeName": "Tempo Quente",
+    "idAreaAviso": "LSB",
+    "startTime": "2026-06-18T00:00:00",
+    "endTime": "2026-06-18T23:59:00",
+    "awarenessLevelID": "yellow"
+  }
+]

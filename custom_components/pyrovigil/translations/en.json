@@ -1,0 +1,41 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Pyrovigil Setup",
+        "description": "Configure wildfire monitoring for your location. You can add multiple zones (home, work, family) by adding the integration again.",
+        "data": {
+          "zone_name": "Zone name (e.g. Home, Work, Family house)",
+          "latitude": "Latitude",
+          "longitude": "Longitude",
+          "radius": "Alert radius (km)",
+          "scan_interval": "Polling interval (minutes)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to ANEPC. Please try again.",
+      "invalid_coordinates": "Coordinates are outside Portugal.",
+      "unknown": "Unexpected error."
+    },
+    "abort": {
+      "already_configured": "A monitor for this location is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "radius": "Alert radius (km)",
+          "scan_interval": "Polling interval (minutes)",
+          "high_risk_threshold": "High risk threshold (RCM level 2-5)",
+          "safety_margin": "Safety margin (km) — extends query radius for large fires",
+          "adaptive_polling": "Adaptive polling — poll faster when fires are nearby",
+          "alert_scan_interval": "Alert polling interval (minutes) — used when fires are nearby",
+          "nasa_firms_key": "NASA FIRMS API key (optional — for satellite hotspot detection)",
+          "aqicn_token": "AQICN API token (optional — for air quality monitoring, get free at aqicn.org/data-platform/token)"
+        }
+      }
+    }
+  }
+}

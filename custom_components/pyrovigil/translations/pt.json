@@ -1,0 +1,41 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configuração Pyrovigil",
+        "description": "Configure a monitorização de incêndios para a sua localização. Pode adicionar múltiplas zonas (casa, trabalho, família) adicionando a integração novamente.",
+        "data": {
+          "zone_name": "Nome da zona (ex. Casa, Trabalho, Casa da família)",
+          "latitude": "Latitude",
+          "longitude": "Longitude",
+          "radius": "Raio de alerta (km)",
+          "scan_interval": "Intervalo de atualização (minutos)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Não foi possível ligar ao ANEPC. Tente novamente.",
+      "invalid_coordinates": "As coordenadas estão fora de Portugal.",
+      "unknown": "Erro inesperado."
+    },
+    "abort": {
+      "already_configured": "Já existe um monitor configurado para esta localização."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "radius": "Raio de alerta (km)",
+          "scan_interval": "Intervalo de atualização (minutos)",
+          "high_risk_threshold": "Limiar de risco elevado (nível RCM 2-5)",
+          "safety_margin": "Margem de segurança (km) — amplia o raio de pesquisa para incêndios grandes",
+          "adaptive_polling": "Polling adaptativo — atualiza mais rápido quando há incêndios próximos",
+          "alert_scan_interval": "Intervalo de alerta (minutos) — usado quando há incêndios próximos",
+          "nasa_firms_key": "Chave API NASA FIRMS (opcional — deteção de pontos quentes por satélite)",
+          "aqicn_token": "Token API AQICN (opcional — monitorização da qualidade do ar, obter grátis em aqicn.org/data-platform/token)"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,103 @@
+blueprint:
+  name: Pyrovigil Fire Notification
+  description: >
+    Sends a push notification to all connected Home Assistant Companion App
+    devices when a new fire is detected nearby. Optionally filter by minimum
+    severity level and maximum distance.
+  domain: automation
+  input:
+    notify_service:
+      name: Notification service
+      description: >
+        The notify service to call. Use "notify.notify" to reach all mobile
+        devices, or pick a specific device like "notify.mobile_app_your_phone".
+      default: notify.notify
+      selector:
+        text:
+    min_severity:
+      name: Minimum severity
+      description: >
+        Only notify for fires at or above this severity level.
+        Low = any fire, Moderate = 25+ personnel, High = 100+ personnel or 2+ aircraft,
+        Extreme = 250+ personnel or 4+ aircraft.
+      default: low
+      selector:
+        select:
+          options:
+            - low
+            - moderate
+            - high
+            - extreme
+    max_distance:
+      name: Maximum distance (km)
+      description: >
+        Only notify for fires within this distance. Set to 0 to use
+        the configured radius (notify for all detected fires).
+      default: 0
+      selector:
+        number:
+          min: 0
+          max: 100
+          unit_of_measurement: km
+    notification_title:
+      name: Notification title
+      description: Title shown in the push notification.
+      default: "Fire detected nearby!"
+      selector:
+        text:
+    critical_alert:
+      name: Critical alert
+      description: >
+        Send as a critical notification (bypasses Do Not Disturb on iOS,
+        overrides notification settings on Android). Recommended for high/extreme only.
+      default: false
+      selector:
+        boolean:
+
+trigger:
+  - platform: event
+    event_type: pyrovigil_fire_detected
+
+variables:
+  severity_levels:
+    low: 0
+    moderate: 1
+    high: 2
+    extreme: 3
+  fire_severity: "{{ trigger.event.data.severity | default('low') }}"
+  fire_distance: "{{ trigger.event.data.distance_km | default(0) | float }}"
+  min_sev: !input min_severity
+  max_dist: !input max_distance
+  is_critical: !input critical_alert
+
+condition:
+  - condition: template
+    value_template: >
+      {{ severity_levels.get(fire_severity, 0) >= severity_levels.get(min_sev, 0) }}
+  - condition: template
+    value_template: >
+      {{ max_dist | int == 0 or fire_distance <= max_dist | float }}
+
+action:
+  - service: !input notify_service
+    data:
+      title: !input notification_title
+      message: >
+        {{ trigger.event.data.nature }} in {{ trigger.event.data.concelho }},
+        {{ fire_distance }} km away.
+        Severity: {{ fire_severity }}.
+      data:
+        push:
+          sound:
+            name: default
+            critical: "{{ 1 if is_critical else 0 }}"
+            volume: "{{ 1.0 if is_critical else 0.5 }}"
+        ttl: 0
+        priority: high
+        channel: pyrovigil_fire_alert
+        tag: "pyrovigil_{{ trigger.event.data.fire_id }}"
+        actions:
+          - action: URI
+            title: Open Map
+            uri: >
+              https://www.google.com/maps?q={{ trigger.event.data.latitude }},{{ trigger.event.data.longitude }}

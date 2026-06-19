@@ -1,0 +1,84 @@
+{
+  "objectIdFieldName": "ID_oc",
+  "globalIdFieldName": "",
+  "geometryType": "esriGeometryPoint",
+  "spatialReference": {"wkid": 4326, "latestWkid": 4326},
+  "fields": [],
+  "features": [
+    {
+      "attributes": {
+        "Numero": "20260001234",
+        "CodNatureza": 3101,
+        "Natureza": "3101 - Povoamento Florestal",
+        "CodEstadoOcorrencia": 5,
+        "EstadoOcorrencia": "Em Curso",
+        "EstadoAgrupado": "Em Curso",
+        "Latitude": 38.75,
+        "Longitude": -9.10,
+        "Concelho": "Lisboa",
+        "Freguesia": "Benfica",
+        "Localidade": "BENFICA",
+        "Operacionais": 48,
+        "OperacionaisTerrestres": 45,
+        "OPAereos": 3,
+        "MeiosTerrestres": 12,
+        "MeiosAereos": 2,
+        "QuantEntidades": 4,
+        "DataInicioOcorrencia": "17/06/2026 14:30",
+        "Duracao": "0/02:15",
+        "DuracaoMinutos": 135
+      },
+      "geometry": {"x": -9.10, "y": 38.75}
+    },
+    {
+      "attributes": {
+        "Numero": "20260001235",
+        "CodNatureza": 3103,
+        "Natureza": "3103 - Mato",
+        "CodEstadoOcorrencia": 7,
+        "EstadoOcorrencia": "Em Resolução",
+        "EstadoAgrupado": "Em Resolução",
+        "Latitude": 38.80,
+        "Longitude": -9.05,
+        "Concelho": "Loures",
+        "Freguesia": "Sacavém",
+        "Localidade": "SACAVEM",
+        "Operacionais": 16,
+        "OperacionaisTerrestres": 16,
+        "OPAereos": 0,
+        "MeiosTerrestres": 5,
+        "MeiosAereos": 0,
+        "QuantEntidades": 2,
+        "DataInicioOcorrencia": "17/06/2026 12:00",
+        "Duracao": "0/04:45",
+        "DuracaoMinutos": 285
+      },
+      "geometry": {"x": -9.05, "y": 38.80}
+    },
+    {
+      "attributes": {
+        "Numero": "20260001236",
+        "CodNatureza": 3105,
+        "Natureza": "3105 - Agrícola",
+        "CodEstadoOcorrencia": 5,
+        "EstadoOcorrencia": "Em Curso",
+        "EstadoAgrupado": "Em Curso",
+        "Latitude": 39.00,
+        "Longitude": -9.20,
+        "Concelho": "Torres Vedras",
+        "Freguesia": "Ramalhal",
+        "Localidade": "RAMALHAL",
+        "Operacionais": 8,
+        "OperacionaisTerrestres": 8,
+        "OPAereos": 0,
+        "MeiosTerrestres": 3,
+        "MeiosAereos": 0,
+        "QuantEntidades": 1,
+        "DataInicioOcorrencia": "17/06/2026 15:00",
+        "Duracao": "0/01:45",
+        "DuracaoMinutos": 105
+      },
+      "geometry": {"x": -9.20, "y": 39.00}
+    }
+  ]
+}
