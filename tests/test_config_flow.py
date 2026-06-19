@@ -30,9 +30,7 @@ VALID_USER_INPUT = {
 def mock_api_connectivity():
     """Mock API connectivity check."""
     with (
-        patch(
-            "custom_components.pyrovigil.config_flow.PyrovigilApiClient"
-        ) as mock_cls,
+        patch("custom_components.pyrovigil.config_flow.PyrovigilApiClient") as mock_cls,
         patch(
             "custom_components.pyrovigil.config_flow.async_get_clientsession",
             return_value=AsyncMock(),

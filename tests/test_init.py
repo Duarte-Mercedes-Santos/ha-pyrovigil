@@ -22,8 +22,14 @@ MOCK_CONFIG = {
 
 @pytest.fixture
 def mock_api():
-    """Mock the API client."""
-    with patch("custom_components.pyrovigil.PyrovigilApiClient") as mock_cls:
+    """Mock the API client and aiohttp session."""
+    with (
+        patch("custom_components.pyrovigil.PyrovigilApiClient") as mock_cls,
+        patch(
+            "custom_components.pyrovigil.async_get_clientsession",
+            return_value=AsyncMock(),
+        ),
+    ):
         client = AsyncMock()
         client.async_get_nearby_fires.return_value = []
         client.async_get_fire_risk.return_value = {
