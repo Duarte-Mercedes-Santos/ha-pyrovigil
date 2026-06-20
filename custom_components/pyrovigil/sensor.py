@@ -116,7 +116,12 @@ class NearestFireSensor(PyrovigilEntity, SensorEntity):
         data: AnepcData = self.coordinator.data
         if data.nearest_fire is None:
             return {}
-        return data.nearest_fire.to_dict()
+        attrs = data.nearest_fire.to_dict()
+        # Remove lat/lon so the map card doesn't track this sensor
+        # as a moving point — individual geo_location entities handle that
+        attrs.pop("latitude", None)
+        attrs.pop("longitude", None)
+        return attrs
 
 
 class TotalPersonnelSensor(PyrovigilEntity, SensorEntity):
