@@ -90,7 +90,7 @@ class FireGeoLocationEvent(CoordinatorEntity, GeolocationEvent):
         super().__init__(coordinator)
         self._fire = fire
         self._attr_unique_id = f"{entry.entry_id}_geo_{fire.fire_id}"
-        self._attr_name = f"🔥 {fire.concelho}"
+        self._attr_name = "⚠ F"
 
     def update_fire(self, fire: FireIncident) -> None:
         """Update the fire data."""
