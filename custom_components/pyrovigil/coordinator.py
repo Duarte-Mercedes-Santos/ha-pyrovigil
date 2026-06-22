@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .api import PyrovigilApiClient
-from .const import WIND_DIRECTION_DEGREES, WIND_DIRECTION_LABELS
+from .const import EXCLUDED_STATUS_GROUPS, WIND_DIRECTION_DEGREES, WIND_DIRECTION_LABELS
 from .mappings import find_nearest_area_aviso, find_nearest_dico, haversine
 from .models import (
     AirQualityData,
@@ -72,6 +72,11 @@ class AnepcCoordinator(DataUpdateCoordinator[AnepcData]):
 
         fires: list[FireIncident] = []
         for attrs in raw_fires:
+            # Skip concluded/closed fires
+            status_group = str(attrs.get("EstadoAgrupado", ""))
+            if status_group in EXCLUDED_STATUS_GROUPS:
+                continue
+
             lat = float(attrs.get("Latitude", 0))
             lon = float(attrs.get("Longitude", 0))
             dist = haversine(self._lat, self._lon, lat, lon)

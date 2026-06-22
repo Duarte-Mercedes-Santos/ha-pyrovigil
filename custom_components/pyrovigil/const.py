@@ -43,6 +43,10 @@ IPMA_WARNINGS_URL = "https://api.ipma.pt/open-data/forecast/warnings/warnings_ww
 # --- ANEPC fire nature codes ---
 FIRE_NATURE_CODES = {3101, 3103, 3105, 3107, 3111}
 
+# --- ANEPC status codes to exclude (fire is over) ---
+# "Em Conclusão" and "Encerrada" mean the fire is no longer active
+EXCLUDED_STATUS_GROUPS = {"Em Conclusão", "Encerrada"}
+
 ANEPC_OUT_FIELDS = [
     "Numero",
     "CodNatureza",

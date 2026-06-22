@@ -117,12 +117,16 @@ class FireGeoLocationEvent(CoordinatorEntity, GeolocationEvent):
     def extra_state_attributes(self) -> dict:
         return {
             "fire_id": self._fire.fire_id,
+            "concelho": self._fire.concelho,
+            "freguesia": self._fire.freguesia,
             "nature": self._fire.nature,
             "status": self._fire.status,
             "severity": self._fire.severity,
             "personnel": self._fire.personnel,
             "ground_vehicles": self._fire.ground_vehicles,
             "aircraft": self._fire.aircraft,
+            "started": self._fire.started,
+            "duration": self._fire.duration,
             "resource_trend": self._fire.resource_trend,
             "distance_trend": self._fire.distance_trend,
         }
