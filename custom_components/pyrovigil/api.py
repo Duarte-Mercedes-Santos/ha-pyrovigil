@@ -12,6 +12,7 @@ from .const import (
     ANEPC_OUT_FIELDS,
     ANEPC_PAGE_SIZE,
     AQICN_URL_TEMPLATE,
+    EXCLUDED_STATUS_GROUPS,
     FIRE_NATURE_CODES,
     FIRMS_BBOX_DEGREES,
     FIRMS_URL_TEMPLATE,
@@ -42,11 +43,15 @@ class PyrovigilApiClient:
         Returns a list of raw feature attribute dicts.
         """
         nature_filter = ",".join(str(c) for c in sorted(FIRE_NATURE_CODES))
+        status_exclusion = ",".join(f"'{s}'" for s in sorted(EXCLUDED_STATUS_GROUPS))
         all_features: list[dict] = []
 
         for page in range(ANEPC_MAX_PAGES):
             params = {
-                "where": f"CodNatureza IN ({nature_filter})",
+                "where": (
+                    f"CodNatureza IN ({nature_filter})"
+                    f" AND EstadoAgrupado NOT IN ({status_exclusion})"
+                ),
                 "geometry": f"{lon},{lat}",
                 "geometryType": "esriGeometryPoint",
                 "spatialRel": "esriSpatialRelIntersects",

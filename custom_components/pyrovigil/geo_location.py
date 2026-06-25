@@ -60,7 +60,7 @@ class FireGeoLocationManager:
         # Remove entities for fires that are no longer active
         for fire_id in tracked_ids - current_ids:
             entity = self._tracked.pop(fire_id)
-            entity.async_remove()
+            self._coordinator.hass.async_create_task(entity.async_remove())
 
         # Add new entities
         new_entities = []
